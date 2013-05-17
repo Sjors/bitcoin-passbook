@@ -28,7 +28,7 @@ describe "Steps" do
       visit new_address_path
       fill_in 'address[base58]', with: "1KHxSzFpdm337XtBeyfbvbS9LZC1BfDu8K"
       click_button "Check address"
-      page.should have_content "error"
+      page.should have_content "can't be blank"
     end
     
     it "takes the user to step 2 if all is well" do
