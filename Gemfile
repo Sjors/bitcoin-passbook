@@ -42,6 +42,8 @@ gem 'nokogiri'
 gem 'twitter-bootstrap-rails'
 gem 'haml-rails'
 
+gem 'bitcoin-ruby'
+
 group :development do
   gem 'pry-doc'
   gem 'rspec-rails'

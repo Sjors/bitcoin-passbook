@@ -27,6 +27,9 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.9)
+    bitcoin-ruby (0.0.1)
+      eventmachine
+      rake (>= 0.8.0)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -44,6 +47,7 @@ GEM
     coffee-script-source (1.6.2)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -183,6 +187,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bitcoin-ruby
   capybara
   coffee-rails (~> 4.0.0)
   factory_girl_rails

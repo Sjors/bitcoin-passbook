@@ -1,0 +1,30 @@
+- content_for :title, "Step 2 - Bitcoin for Passbook"
+.row
+  .span12
+    = form_for @address, :html => { :class => 'form-horizontal' } do |f|
+      .control-group
+        .controls
+          %span.badge.badge-success=link_to "Step 1 (address)", edit_address_path(@address), {:style => "color:#FFFFFF;"}
+          = "->"
+          %span.badge.badge-info Step 2 (payment)
+          = "->"
+          %span.badge Step 3 (pass)
+      .control-group
+        = f.label "Address", :class => 'control-label'
+        .controls
+          = link_to @address.base58, edit_address_path(@address)
+      .control-group
+        = f.label "Name", :class => 'control-label'
+        .controls
+          = link_to @address.name, edit_address_path(@address)
+      .control-group
+        = f.label "Balance", :class => 'control-label'
+        .controls
+          B⃦ ...
+          / # @address.balance
+          according to 
+          = link_to "Blockchain.info", "http://blockchain.info/address/#{ @address.base58 }", :target => "_new"
+      .control-group
+        .controls
+          = f.submit "Pay with Coinbase",:class => "btn btn-primary"
+  

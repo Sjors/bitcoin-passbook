@@ -1,0 +1,25 @@
+- content_for :title, "Step 1 - Bitcoin for Passbook"
+.row
+  .span12
+    = form_for @address, :html => { :class => 'form-horizontal' } do |f|
+      .control-group
+        .controls
+          %span.badge.badge-info Step 1 (address)
+          = "->"
+          %span.badge Step 2 (payment)
+          = "->"
+          %span.badge Step 3 (pass)
+      .control-group
+        = f.label "Address", :class => 'control-label'
+        .controls
+          = f.text_field :base58, :class => 'text_field'
+      .control-group
+        = f.label "Name", :class => 'control-label'
+        .controls
+          = f.text_field :name, :class => 'text_field', :placeholder => "Name for this address"
+          %span.help-block
+            This name will be used for your pass
+      .control-group
+        .controls
+          = f.submit "Check address...",:class => "btn btn-primary"
+            
