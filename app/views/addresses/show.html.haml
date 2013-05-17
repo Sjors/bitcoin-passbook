@@ -35,14 +35,9 @@
         .controls
           #coinbase_payment_progress
             = render "order_progress"
-            :javascript
-              var orderTimer;
-              $(function() {
-                 orderTimer = setInterval(function() {$("#coinbase_payment_progress").load("#{order_progress_address_path(@address)}")}, 5000);
-              });
-              
-            
-
-          
-          
-  
+            - if !@address.paid
+              :javascript
+                var orderTimer;
+                $(function() {
+                   orderTimer = setInterval(function() {$("#coinbase_payment_progress").load("#{order_progress_address_path(@address)}")}, 5000);
+                });
