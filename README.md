@@ -1,0 +1,1 @@
+[ ![Codeship Status for Sjors/bitcoin-passbook](https://www.codeship.io/projects/0825cfa0-a110-0130-3896-7214dcb07260/status?branch=production)](https://www.codeship.io/projects/3527)
