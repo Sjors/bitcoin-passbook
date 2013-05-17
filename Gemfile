@@ -35,11 +35,22 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'pry'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+gem 'nokogiri'
+gem 'twitter-bootstrap-rails'
+gem 'haml-rails'
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :development do
+  gem 'pry-doc'
+  gem 'rspec-rails'
+  gem 'terminal-notifier-guard' # Mac
+end
+
+group :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
+  gem 'rspec-rails'
+end
+

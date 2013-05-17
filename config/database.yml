@@ -19,8 +19,10 @@ development:
   encoding: unicode
   database: bitcoin-passbook_development
   pool: 5
-  username: bitcoin-passbook
+  username: 
   password:
+  host: localhost
+    
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -48,13 +50,7 @@ test:
   encoding: unicode
   database: bitcoin-passbook_test
   pool: 5
-  username: bitcoin-passbook
+  username: 
   password:
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: bitcoin-passbook_production
-  pool: 5
-  username: bitcoin-passbook
-  password:
+  host: localhost
+    
