@@ -42,7 +42,9 @@ gem 'nokogiri'
 gem 'twitter-bootstrap-rails'
 gem 'haml-rails'
 
+gem 'money'
 gem 'bitcoin-ruby'
+gem 'coinbase'
 
 group :development do
   gem 'pry-doc'

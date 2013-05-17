@@ -1,0 +1,12 @@
+- if !@address.paid
+  Wait a few seconds after Coinbase has approved the payment. 
+  %br
+  It's safe to refresh the page, if you need to.
+- else 
+  Payment complete, creating a pass...
+  :javascript
+    if(typeof orderTimer !== "undefined") {
+      clearInterval(orderTimer);
+      // window.location = "#{  }";
+    }
+  

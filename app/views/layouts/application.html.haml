@@ -18,6 +18,7 @@
 
 
   %body
+    = javascript_include_tag "application"
     .navbar.navbar-fluid-top
       .navbar-inner
         .container-fluid
@@ -51,7 +52,3 @@
       /     = link_to("Purple Dunes", "http://purpledunes.com/")
       /     2013
     /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
-    = javascript_include_tag "application"

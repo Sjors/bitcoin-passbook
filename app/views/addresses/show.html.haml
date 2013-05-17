@@ -6,7 +6,10 @@
         .controls
           %span.badge.badge-success=link_to "Step 1 (address)", edit_address_path(@address), {:style => "color:#FFFFFF;"}
           = "->"
-          %span.badge.badge-info Step 2 (payment)
+          - if @address.paid
+            %span.badge.badge-success Step 2 (payment)
+          - else
+            %span.badge.badge-info Step 2 (payment)
           = "->"
           %span.badge Step 3 (pass)
       .control-group
@@ -26,5 +29,20 @@
           = link_to "Blockchain.info", "http://blockchain.info/address/#{ @address.base58 }", :target => "_new"
       .control-group
         .controls
-          = f.submit "Pay with Coinbase",:class => "btn btn-primary"
+          .coinbase-button{:"data-code" => @address.button_code}
+          %script{:src => "https://coinbase.com/assets/button.js", :type => "text/javascript"}
+      .control-group
+        .controls
+          #coinbase_payment_progress
+            = render "order_progress"
+            :javascript
+              var orderTimer;
+              $(function() {
+                 orderTimer = setInterval(function() {$("#coinbase_payment_progress").load("#{order_progress_address_path(@address)}")}, 5000);
+              });
+              
+            
+
+          
+          
   

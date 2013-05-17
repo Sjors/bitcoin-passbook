@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :edit, :update]
+  before_action :set_address, only: [:show, :edit, :update, :order_progress]
 
   # # GET /addresses
   # # GET /addresses.json
@@ -10,6 +10,11 @@ class AddressesController < ApplicationController
   # GET /addresses/1
   # GET /addresses/1.json
   def show
+    unless @address.button_code.present?      
+      coinbase = Coinbase::Client.new(ENV['COINBASE_API_KEY'])
+      button = coinbase.create_button "Your Order ##{ @address.id }", 0.01, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
+      @address.update button_code: button.button.code
+    end
   end
   
   # GET /addresses/new
@@ -49,6 +54,14 @@ class AddressesController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @address.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def order_progress
+    respond_to do |format|
+      format.html {
+        render "_order_progress", :layout => nil
+      }
     end
   end
 
