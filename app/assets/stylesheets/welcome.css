@@ -1,0 +1,10 @@
+#screenshot .iPhone-frame {
+  position: relative;
+  background: url("/images/iPhone_4_280.png") no-repeat;
+  height: 45em;
+}
+#screenshot .iPhone-frame .screen {
+  position: absolute;
+  left: 25px;
+  top: 113px;
+}

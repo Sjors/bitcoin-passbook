@@ -1,1 +1,34 @@
-Coming soon...
+.span8
+  .hero-unit
+    %h1 Bitcoin for Passbook
+    %p Check your bitcoin balance by following three simple steps...
+    %h2 Step 1
+    %p 
+      Tell us the 
+      = link_to "address","https://en.bitcoin.it/wiki/Address" 
+      you wish to monitor.
+    / Put form field and submit button here which takes the next page
+    / Placeholder is 1KHxSzFpdm337XtBeyfbvbS9LZC1BfDu8K
+    %h2 Step 2
+    %p 
+      Pay B⃦ 0.01 using 
+      = link_to "Coinbase", "https://coinbase.com" + "."
+      You don't need an account and you don't have to use your iPhone for the payment either.
+    %h2 Step 3
+    %p Download your pass. If you're not on your iPhone, we'll give you a link.
+    %a.btn.btn-primary.btn-large
+      Get Started
+    / If address field is empty, give user opportunity to enter address later on
+.span4
+  #screenshot
+    .iPhone-frame
+      %img.screen{:src=>'/images/screenshot.png'}
+.span12
+  Note that you cannot make payments using this pass. However you can use the QR code to ask your Android friends for bitcoins. If anything goes wrong, please 
+  = link_to "contact", "mailto:sjors@bitcoin-passbook.com"
+  me. This service is brought to you by Sjors Provoost a.k.a. 
+  = link_to("Purple Dunes", "http://purpledunes.com/") + "."
+  You can also checkout my personal 
+  = link_to("Twitter", "http://twitter.com/provoost")
+  and 
+  = link_to("blog", "http://sprovoost.nl/") + "."

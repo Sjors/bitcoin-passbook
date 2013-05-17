@@ -4,7 +4,7 @@ describe "Welcome" do
   describe "GET /" do
     it "shows the welcome page" do
       visit root_path
-       page.should have_content("soon")
+       page.should have_content("step")
     end
   end
 end
