@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "HelloWorld" do
+describe "Welcome" do
   describe "GET /" do
-    it "shows the rails welcome page" do
+    it "shows the welcome page" do
       visit root_path
        page.should have_content("soon")
     end
