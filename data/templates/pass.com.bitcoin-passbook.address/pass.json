@@ -3,6 +3,8 @@
   "passTypeIdentifier" : "pass.com.bitcoin-passbook.address",
   "serialNumber" : "1",
   "teamIdentifier" : "227MFQPYQ4",
+  "webServiceURL" : "http://192.168.91.151:3000",
+  "authenticationToken" : "",
   "relevantDate" : "2013-11-22T09:00+01:00",
   "locations" : [
   ],

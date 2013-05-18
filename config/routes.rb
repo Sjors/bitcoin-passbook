@@ -4,6 +4,9 @@ BitcoinPassbook::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
+
+  get '/v1/passes/pass' => 'passbook/passes#get_pkpass', :defaults => { :pass_type_id => 'pass.com.bitcoin-passbook.address' }
+
   
   # get "/passes/create" => "passes#create", :defaults => { :pass_type_id => 'pass.com.bitcoin-passbook.address' }
   

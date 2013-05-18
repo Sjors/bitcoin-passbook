@@ -45,7 +45,8 @@ gem 'haml-rails'
 gem 'money'
 gem 'bitcoin-ruby'
 gem 'coinbase'
-gem 'passbook-ruby'
+gem 'passbook-ruby', :git => "git://github.com/Sjors/xl-passbook-ruby.git", :branch => "rails4" 
+                     # :path => "../xl-passbook-ruby"
 
 group :development do
   gem 'pry-doc'

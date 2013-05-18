@@ -1,12 +1,10 @@
 class Pass < ActiveRecord::Base
-  attr_protected :authentication_token
-      
   # belongs_to :address
   
-  # def set_pass_fields
-  #   self.authentication_token = Base64.urlsafe_encode64(SecureRandom.base64(36))
-  #   self.serial_number||= Base64.urlsafe_encode64(SecureRandom.base64(36))
-  # end
+  def set_pass_fields
+    self.authentication_token = Base64.urlsafe_encode64(SecureRandom.base64(36))
+    self.serial_number||= Base64.urlsafe_encode64(SecureRandom.base64(36))
+  end
 
   # def self.update_or_create params
   #   pass_pass = find_by_card_id params[:card_id]
@@ -18,19 +16,22 @@ class Pass < ActiveRecord::Base
   #   pass_pass
   # end
 
-  def self.find_or_create(params)
+  def self.update_or_create(params)
 
 
     # address = Address.find(params[:address_id])
     
     # Check if we already created this pass
     # pass_pass = address.pass
-    return pass_pass if pass_pass.present?
+    # return pass_pass if pass_pass.present?
     
     pass_pass ||=new
-    params.slice(*attr_accessible[:default].map(&:to_sym)).each do |attr, val|
-      pass_pass.send :"#{attr}=", val
-    end
+    
+    pass_pass.set_pass_fields
+    
+    # params.slice(*attr_accessible[:default].map(&:to_sym)).each do |attr, val|
+    #   pass_pass.send :"#{attr}=", val
+    # end
    
     # pass_pass.send :"var=", var
     
@@ -49,7 +50,7 @@ class Pass < ActiveRecord::Base
 
   def update_pass pkpass
     update_json pkpass.json
-    update_files pkpass.files
+    # update_files pkpass.files
   end
 
   # Not  needed:
@@ -93,7 +94,7 @@ class Pass < ActiveRecord::Base
            label: "DATE",
            dateStyle: "PKDateStyleMedium",
            timeStyle: "PKDateStyleNone",
-           value: I18n.l(Time.now.to_time, :format => :w3c)
+           value: "1997-07-16T19:20+01:00" #I18n.l(Time.now.to_time, :format => :w3c)
          }
        ],
        secondaryFields: [
@@ -123,5 +124,10 @@ class Pass < ActiveRecord::Base
         }
       ]
     }    
+  end
+  
+  private
+  def person_params
+    params.permit(:authentication_token)
   end
 end
