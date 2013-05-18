@@ -45,6 +45,7 @@ gem 'haml-rails'
 gem 'money'
 gem 'bitcoin-ruby'
 gem 'coinbase'
+gem 'passbook-ruby'
 
 group :development do
   gem 'pry-doc'
