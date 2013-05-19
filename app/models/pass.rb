@@ -34,7 +34,7 @@ class Pass < ActiveRecord::Base
   end
   
   def check_for_updates
-
+    # iPhone is asking for an updated pass. Fetch the most recent balance and last transaction from Blockchain.
   end
 
   def update_pass pkpass
@@ -92,13 +92,6 @@ class Pass < ActiveRecord::Base
            value: "" 
          }
        ],
-       secondaryFields: [
-         {
-             key: "last_transaction",
-             label: "Last transaction",
-             value: "Spent ฿0.01 on May 19th, 18:42"
-        }
-      ],
       backFields: [
         {
             key: "address",
@@ -122,10 +115,43 @@ class Pass < ActiveRecord::Base
         # }
       ]
     }    
+    
+    if self.address.transactions.count == 0
+      pass_json['storeCard']["secondaryFields"] = [
+        {
+            key: "last_transaction",
+            label: "Last transaction",
+            value: "No transactions found"
+        }]
+    else
+      sent_or_received = self.address.transactions.first.amount < 0 ? "Spent" : "Received"
+      amount = self.address.transactions.first.amount.abs
+      date = self.address.transactions.first.date
+      pass_json['storeCard']["secondaryFields"] = [
+        {
+            key: "last_transaction",
+            label: "Last transaction",
+            value: sent_or_received + " ฿" + amount.to_s
+        },  {
+            key: "last_transaction_date",
+            label: "Date",
+             dateStyle: "PKDateStyleShort",
+             timeStyle: "PKDateStyleShort",
+            value: I18n.l(date.to_time, :format => :w3c)
+        }
+        # {
+     #      key: "date",
+     #      label: self.sight.app.identifier == "AMS" ? "DATE" : "DATUM",
+     #      dateStyle: "PKDateStyleMedium",
+     #      timeStyle: "PKDateStyleNone",
+     #      value: I18n.l(self.valid_on.to_time, :format => :w3c)
+     #    }
+      ]
+    end
   end
   
   private
-  def person_params
+  def pass_params
     params.permit(:authentication_token)
   end
 end

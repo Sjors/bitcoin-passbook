@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/Sjors/xl-passbook-ruby.git
-  revision: ba63a0fab8cb418acb84d9233e1b7638e8d51530
+  revision: 06ef5753bc5d808b7a245b0e16db59467909b312
   branch: rails4
   specs:
     passbook-ruby (0.1.0)

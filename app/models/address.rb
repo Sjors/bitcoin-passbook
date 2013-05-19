@@ -5,6 +5,7 @@ class Address < ActiveRecord::Base
   validate :proper_bitcoin_address
   
   has_one :pass
+  has_many :transactions
   
   private
   def proper_bitcoin_address

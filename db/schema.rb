@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130518144017) do
+ActiveRecord::Schema.define(version: 20130519140023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,5 +48,15 @@ ActiveRecord::Schema.define(version: 20130518144017) do
   end
 
   add_index "passes", ["address_id"], name: "index_passes_on_address_id", using: :btree
+
+  create_table "transactions", force: true do |t|
+    t.integer  "address_id"
+    t.decimal  "amount",     precision: 16, scale: 8
+    t.datetime "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["address_id"], name: "index_transactions_on_address_id", using: :btree
 
 end

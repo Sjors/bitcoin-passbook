@@ -23,6 +23,8 @@ BitcoinPassbook::Application.routes.draw do
   
   post 'orders/ipn' => 'orders#ipn'
   
+  post "/v1/log" => "logs#log"
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
