@@ -5,16 +5,19 @@ BitcoinPassbook::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  get '/v1/passes/pass' => 'passbook/passes#get_pkpass', :defaults => { :pass_type_id => 'pass.com.bitcoin-passbook.address' }
+  # get '/v1/passes/pass' => 'passbook/passes#get_pkpass', :defaults => { :pass_type_id => 'pass.com.bitcoin-passbook.address' }
 
   
-  # get "/passes/create" => "passes#create", :defaults => { :pass_type_id => 'pass.com.bitcoin-passbook.address' }
+  get "/pass/:download_code" => "download#fetch_address"
+  
+  get "/addresses/:address_id/pass.:format" => "passes#find_or_create", :defaults => {:mime_type => "",  :pass_type_id => 'pass.com.bitcoin-passbook.address' }
   
   # resources :passes, :defaults => { :pass_type_id => 'pass.com.bitcoin-passbook.address' }
   
   resources :addresses do
     member do
       get :order_progress
+      get :download_pass
     end
   end
   

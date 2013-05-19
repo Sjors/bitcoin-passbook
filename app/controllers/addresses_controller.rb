@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:show, :edit, :update, :order_progress]
+  before_action :set_address, only: [:show, :edit, :update, :order_progress, :download_pass]
 
   # # GET /addresses
   # # GET /addresses.json
@@ -62,6 +62,23 @@ class AddressesController < ApplicationController
       format.html {
         render "_order_progress", :layout => nil
       }
+    end
+  end
+  
+  def download_pass
+    if !@address.paid
+      flash[:error] = "We haven't confirmed payment for this address yet."
+      redirect_to address_path(@address)
+      return
+    end
+    
+    if !@address.download_code
+      while 
+        @address.download_code = rand(1000000)
+        break if Address.where(download_code: @address.download_code).count == 0
+      end
+      @address.download_code_expires_at = 1.hour.from_now
+      @address.save
     end
   end
 

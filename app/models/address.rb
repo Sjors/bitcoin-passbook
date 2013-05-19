@@ -4,6 +4,8 @@ class Address < ActiveRecord::Base
   validates_presence_of :name
   validate :proper_bitcoin_address
   
+  has_one :pass
+  
   private
   def proper_bitcoin_address
     unless Bitcoin::valid_address?(self.base58)

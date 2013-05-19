@@ -1,0 +1,37 @@
+- content_for :title, "Step 3 - Bitcoin for Passbook"
+.row
+  .span12
+    = form_for @address, :html => { :class => 'form-horizontal' } do |f|
+      .control-group
+        .controls
+          %span.badge.badge-success Step 1 (address)
+          = "->"
+          %span.badge.badge-success Step 2 (payment)
+          = "->"
+          - if @address.pass.present?
+            %span.badge.badge-success Step 3 (pass)
+          - else
+            %span.badge.badge-info Step 3 (pass)
+      .control-group
+        = f.label "Address", :class => 'control-label'
+        .controls
+          = @address.base58
+      .control-group
+        = f.label "Name", :class => 'control-label'
+        .controls
+          = @address.name
+      .control-group
+        = f.label "Balance", :class => 'control-label'
+        .controls
+          B⃦ ...
+          / # @address.balance
+          according to 
+          = link_to "Blockchain.info", "http://blockchain.info/address/#{ @address.base58 }", :target => "_new"
+      .control-group
+        .controls
+          = link_to image_tag("/images/passbook.png"), "/addresses/#{ @address.id }/pass.pkpass", :mimetype => "application/vnd.apple.pkpass"
+      .control-group
+        .controls
+          If this is not on your Mac or iPhone, visit the following URL on your phone within the next hour:
+          %br
+          = (root_url + "pass/<b>" + @address.download_code.to_s + "</b>").html_safe
