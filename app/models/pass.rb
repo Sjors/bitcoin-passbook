@@ -1,5 +1,6 @@
 class Pass < ActiveRecord::Base
   belongs_to :address
+  has_many :registrations, :class_name => "Passbook::Registration", :foreign_key => "serial_number", :primary_key => 'serial_number'
   
   def set_pass_fields
     self.authentication_token = Base64.urlsafe_encode64(SecureRandom.base64(36))
@@ -124,14 +125,15 @@ class Pass < ActiveRecord::Base
             value: "No transactions found"
         }]
     else
-      sent_or_received = self.address.transactions.first.amount < 0 ? "Spent" : "Received"
-      amount = self.address.transactions.first.amount.abs
-      date = self.address.transactions.first.date
+      sent_or_received = self.address.transactions.last.amount < 0 ? "Spent" : "Received"
+      amount = self.address.transactions.last.amount.abs
+      date = self.address.transactions.last.date
       pass_json['storeCard']["secondaryFields"] = [
         {
             key: "last_transaction",
             label: "Last transaction",
-            value: sent_or_received + " ฿" + amount.to_s
+            value: sent_or_received + " ฿" + amount.to_s,
+            changeMessage: "%@"
         },  {
             key: "last_transaction_date",
             label: "Date",
