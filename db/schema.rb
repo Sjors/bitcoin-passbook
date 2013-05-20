@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130520081727) do
+ActiveRecord::Schema.define(version: 20130520102825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20130520081727) do
     t.boolean  "paid",                                              default: false
     t.integer  "download_code"
     t.datetime "download_code_expires_at"
+    t.string   "session_secret"
   end
 
   create_table "passbook_registrations", force: true do |t|

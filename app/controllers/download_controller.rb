@@ -1,4 +1,5 @@
 class DownloadController < ApplicationController 
+  load_and_authorize_resource
   def fetch_address
     @address = Address.where(download_code: params[:download_code]).where("download_code_expires_at > ?", Time.now).first
     
@@ -8,7 +9,9 @@ class DownloadController < ApplicationController
       return
     end
     
+    reset_session
     session[:used_download_code] = true
+    session[:address_secret] = @address.session_secret
     
     redirect_to download_pass_address_path(@address)
   end

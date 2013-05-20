@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController 
+  load_and_authorize_resource
   skip_before_filter :verify_authenticity_token, :only => [:ipn]
   
   def ipn

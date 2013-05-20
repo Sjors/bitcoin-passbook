@@ -48,6 +48,7 @@ gem 'coinbase'
 gem 'passbook-ruby', :git => "git://github.com/Sjors/xl-passbook-ruby.git", :branch => "rails4" 
                      # :path => "../xl-passbook-ruby"
 gem 'urbanairship'
+gem 'cancan'
 
 group :development do
   gem 'pry-doc'

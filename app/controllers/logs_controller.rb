@@ -1,4 +1,5 @@
 class LogsController < ApplicationController
+  # Does not use CanCan
   skip_before_filter :verify_authenticity_token, :only => [:log]
 
   def log

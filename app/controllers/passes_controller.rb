@@ -1,4 +1,5 @@
 class PassesController < ApplicationController
+  load_and_authorize_resource
   protect_from_forgery :except => :find_or_create
   skip_before_filter :verify_authenticity_token, :only => [:create]
     

@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_address, only: [:show, :edit, :update, :order_progress, :download_pass]
 
   # # GET /addresses
@@ -35,9 +36,13 @@ class AddressesController < ApplicationController
   # POST /addresses
   def create
     @address = Address.new(address_params)
+    
+    @address.session_secret = Base64.urlsafe_encode64(SecureRandom.base64(36))
 
     respond_to do |format|
       if @address.save
+        reset_session
+        session[:address_secret] = @address.session_secret
         format.html { redirect_to @address, notice: 'Address was found.' }
       else
         format.html { render action: 'new' }
