@@ -23,6 +23,8 @@ class Ability
     
     can [:fetch_address], Download # Security check is done in that method
     
+    can [:ipn], Order
+    
     # Pass updates and log entries by the Passbook app don't use CanCan. Their
     # security depends on the secracy of the serial number and authentication
     # token. The passbook app also uses https (Heroku generic certificate).
