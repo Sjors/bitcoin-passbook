@@ -1,4 +1,4 @@
-if Rails.env != "test"
+if ENV["PASS_ADDRESS"]
   Passbook::Config.instance.add_pkpass do |passbook|
     passbook.pass_config["pass.com.bitcoin-passbook.address"]={
                                 "cert_path"=>"config/pass-address.p12",
