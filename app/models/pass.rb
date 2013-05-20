@@ -35,7 +35,16 @@ class Pass < ActiveRecord::Base
   end
   
   def check_for_updates
-    # iPhone is asking for an updated pass. Fetch the most recent balance and last transaction from Blockchain.
+    # iPhone is asking for an updated pass. Fetch the most recent balance and 
+    # last transaction from Blockchain. 
+    # Except when we suspect that the iPhone is calling us in response to our 
+    # cron job. We'll use two minutes as a cutoff for that.
+    
+    unless self.updated_at > 2.minutes.ago
+      self.address.fetch_balance_and_last_transaction!
+    end
+    
+    
   end
 
   def update_pass pkpass
