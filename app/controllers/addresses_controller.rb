@@ -14,6 +14,8 @@ class AddressesController < ApplicationController
       coinbase = Coinbase::Client.new(ENV['COINBASE_API_KEY'])
       button = coinbase.create_button "Your Order ##{ @address.id }", 0.01, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
       @address.update button_code: button.button.code
+      
+      @address.fetch_balance_and_last_transaction!
     end
   end
   

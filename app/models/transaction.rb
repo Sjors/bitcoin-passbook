@@ -1,7 +1,7 @@
 class Transaction < ActiveRecord::Base
   belongs_to :address
   
-  default_scope :order => {:date => :asc}
+  default_scope -> { order(date: :asc) }  # :order => {:date => :asc}
   
   after_commit :touch_address_and_pass
   
@@ -9,6 +9,6 @@ class Transaction < ActiveRecord::Base
   
   def touch_address_and_pass
     self.address.touch
-    self.address.pass.touch
+    self.address.pass.touch if self.address.pass
   end
 end
