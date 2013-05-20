@@ -7,8 +7,8 @@ namespace :pass_address do :env
     end
     
     # Find all addresses which have been paid for and have a pass which is 
-    # registered with a push token.
-    @addresses = Address.joins(:pass).joins(:pass => :registrations).where(paid: true).where("passbook_registrations.push_token IS NOT NULL").uniq
+    # registered with a push token. Don't lazy load, because otherwise update will be read-only
+    @addresses = Address.joins(:pass).joins(:pass => :registrations).where(paid: true).where("passbook_registrations.push_token IS NOT NULL").uniq.to_a
     
     Rails.logger.info "Checking the latest balance and transactions for #{ @addresses.count } addresses..."
     
