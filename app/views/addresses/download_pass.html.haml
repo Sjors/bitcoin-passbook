@@ -35,3 +35,11 @@
           If this is not on your Mac or iPhone, visit the following URL on your phone within the next hour:
           %br
           = (root_url + "pass/<b>" + @address.download_code.to_s + "</b>").html_safe
+- if !@address.pass && !@used_download_code
+  - if Rails.env == "production"
+    :javascript
+      mixpanel.track("Payment complete");
+- if @used_download_code 
+  - if Rails.env == "production"
+    :javascript
+      mixpanel.track("Used download code");

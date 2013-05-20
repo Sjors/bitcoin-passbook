@@ -41,3 +41,6 @@
                 $(function() {
                    orderTimer = setInterval(function() {$("#coinbase_payment_progress").load("#{order_progress_address_path(@address)}")}, 5000);
                 });
+- if Rails.env == "production"
+  :javascript
+    mixpanel.track("Payment page");

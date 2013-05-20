@@ -8,6 +8,8 @@ class DownloadController < ApplicationController
       return
     end
     
+    session[:used_download_code] = true
+    
     redirect_to download_pass_address_path(@address)
   end
 end

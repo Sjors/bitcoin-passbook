@@ -81,7 +81,16 @@ class AddressesController < ApplicationController
       end
       @address.download_code_expires_at = 1.hour.from_now
       @address.save
+      
     end
+    
+    if session[:used_download_code]
+      @used_download_code = session[:used_download_code]
+      session[:used_download_code] = false
+    else
+      @used_download_code = false
+    end
+    
   end
 
   private

@@ -31,3 +31,6 @@
   = link_to("Twitter", "http://twitter.com/provoost")
   and 
   = link_to("blog", "http://sprovoost.nl/") + "."
+- if Rails.env == "production"
+  :javascript
+    mixpanel.track("Landing page");
