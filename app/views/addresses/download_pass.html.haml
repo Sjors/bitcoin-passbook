@@ -23,9 +23,9 @@
       .control-group
         = f.label "Balance", :class => 'control-label'
         .controls
-          B⃦ ...
-          / # @address.balance
-          according to 
+          ฿ 
+          = @address.balance
+          according to
           = link_to "Blockchain.info", "http://blockchain.info/address/#{ @address.base58 }", :target => "_new"
       .control-group
         .controls
