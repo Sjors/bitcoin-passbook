@@ -44,7 +44,7 @@ class Address < ActiveRecord::Base
         
         res["txs"][0]["inputs"].each do |input|
           if input["prev_out"] && input["prev_out"]["addr"] == self.base58
-            tally = tally - BigDecimal.new(input["value"].to_s)
+            tally = tally - BigDecimal.new(input["prev_out"]["value"].to_s)
           end
         end
         
