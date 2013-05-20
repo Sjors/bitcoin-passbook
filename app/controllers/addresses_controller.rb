@@ -12,11 +12,13 @@ class AddressesController < ApplicationController
   # GET /addresses/1.json
   def show
     unless @address.button_code.present?      
-      coinbase = Coinbase::Client.new(ENV['COINBASE_API_KEY'])
-      button = coinbase.create_button "Your Order ##{ @address.id }", 0.01, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
-      @address.update button_code: button.button.code
+      unless Rails.env == "test"
+        coinbase = Coinbase::Client.new(ENV['COINBASE_API_KEY'])
+        button = coinbase.create_button "Your Order ##{ @address.id }", 0.01, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
+        @address.update button_code: button.button.code
       
-      @address.fetch_balance_and_last_transaction!
+        @address.fetch_balance_and_last_transaction!
+      end
     end
   end
   
