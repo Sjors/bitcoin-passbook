@@ -13,11 +13,20 @@ class AddressesController < ApplicationController
   def show
     unless @address.button_code.present?      
       unless Rails.env == "test"
-        coinbase = Coinbase::Client.new(ENV['COINBASE_API_KEY'])
-        button = coinbase.create_button "Your Order ##{ @address.id }", 0.01, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
-        @address.update button_code: button.button.code
+        begin
+          coinbase = Coinbase::Client.new(ENV['COINBASE_API_KEY'])
+          button = coinbase.create_button "Your Order ##{ @address.id }", 0.01, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
+          @address.update button_code: button.button.code
       
-        @address.fetch_balance_and_last_transaction!
+          @address.fetch_balance_and_last_transaction!
+        rescue OpenSSL::SSL::SSLError
+          flash[:error] = "Something went wrong while connecting to Coinbase. Please try again later."
+          logger.error "SSL Error with Coinbase for address #{ @address }."
+          redirect_to root_path
+          return
+        end  
+         
+        
       end
     end
   end
