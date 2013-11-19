@@ -12,7 +12,9 @@
         = f.text_field :base58, :placeholder => "1KHxSzFpdm337XtBeyfbvbS9LZC1BfDu8K", :class => "input-xxlarge"
       %h2 Step 2
       %p 
-        Pay ฿ ENV['PRICE'] using 
+        Pay ฿ 
+        = ENV['PRICE'] 
+        using 
         = link_to("Coinbase", "https://coinbase.com", :target => "_new") + "."
         You don't need an account and you don't have to use your iPhone for the payment either.
       %h2 Step 3
