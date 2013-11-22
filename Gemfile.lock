@@ -240,6 +240,7 @@ DEPENDENCIES
   pry-doc
   rails (= 4.0.1)
   rspec-rails
+  rubyzip
   sass-rails
   sdoc
   terminal-notifier-guard

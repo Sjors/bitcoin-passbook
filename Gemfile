@@ -47,6 +47,7 @@ gem 'bitcoin-ruby'
 gem 'coinbase'
 gem 'passbook-ruby', :git => "git://github.com/Sjors/xl-passbook-ruby.git", :branch => "rails4" 
                      # :path => "../xl-passbook-ruby"
+gem 'rubyzip'
 gem 'urbanairship'
 gem 'cancan'
 gem "exception_notification"
