@@ -77,4 +77,13 @@ BitcoinPassbook::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Bitcoin Passbook] ",
+      :sender_address => %{"Bitcoin Passbook Robot" <robot@bitcoin-passbook.com>},
+      :exception_recipients => %w{bugs@purpledunes.com}
+    }
+  
+  ExceptionNotifier::Rake.configure
 end

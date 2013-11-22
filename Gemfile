@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby "2.0.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -49,6 +49,8 @@ gem 'passbook-ruby', :git => "git://github.com/Sjors/xl-passbook-ruby.git", :bra
                      # :path => "../xl-passbook-ruby"
 gem 'urbanairship'
 gem 'cancan'
+gem "exception_notification"
+gem 'exception_notification-rake'
 
 group :development do
   gem 'pry-doc'
