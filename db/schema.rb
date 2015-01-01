@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20130520102825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", force: true do |t|
+  create_table "addresses", force: :cascade do |t|
     t.string   "base58"
     t.string   "name"
     t.decimal  "balance",                  precision: 16, scale: 8
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20130520102825) do
     t.string   "session_secret"
   end
 
-  create_table "passbook_registrations", force: true do |t|
+  create_table "passbook_registrations", force: :cascade do |t|
     t.string   "uuid"
     t.string   "device_id"
     t.string   "push_token"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20130520102825) do
     t.boolean  "registered_with_urban_airship", default: false
   end
 
-  create_table "passes", force: true do |t|
+  create_table "passes", force: :cascade do |t|
     t.integer  "address_id"
     t.string   "serial_number"
     t.string   "authentication_token"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 20130520102825) do
 
   add_index "passes", ["address_id"], name: "index_passes_on_address_id", using: :btree
 
-  create_table "transactions", force: true do |t|
+  create_table "transactions", force: :cascade do |t|
     t.integer  "address_id"
     t.decimal  "amount",       precision: 16, scale: 8
     t.datetime "date"

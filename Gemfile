@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby "2.0.0"
+ruby "2.2.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '4.2.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -48,14 +48,12 @@ gem 'coinbase'
 gem 'passbook-ruby', :git =>  "git://github.com/mikey0000/xl-passbook-ruby.git", :branch => "rails4"  # , :git => "git://github.com/Sjors/xl-passbook-ruby.git", :branch => "rails4" 
                      # :path => "../xl-passbook-ruby"
 gem 'rubyzip'
-gem 'urbanairship'
 gem 'cancan'
 gem "exception_notification"
 gem 'exception_notification-rake'
 
 group :development do
-  gem 'pry-doc'
-  gem 'rspec-rails'
+  gem 'byebug'
   gem 'terminal-notifier-guard' # Mac
 end
 
@@ -63,6 +61,10 @@ group :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
+end
+
+group :development, :test do
   gem 'rspec-rails'
+  gem 'dotenv-rails'
 end
 

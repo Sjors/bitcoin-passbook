@@ -13,7 +13,7 @@
       %h2 Step 2
       %p 
         Pay ฿ 
-        = ENV['PRICE'] 
+        = ENV['PRICE'].to_f 
         using 
         = link_to("Coinbase", "https://coinbase.com", :target => "_new") + "."
         You don't need an account and you don't have to use your iPhone for the payment either.
