@@ -15,9 +15,9 @@ class AddressesController < ApplicationController
       unless Rails.env == "test"
         begin
           coinbase = Coinbase::Client.new(ENV['COINBASE_API_KEY'])
-          byebug
-          button = coinbase.create_button "Your Order ##{ @address.id }", ENV['PRICE'].to_f, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
-          @address.update button_code: button.button.code
+          # Disabled pending: https://www.bountysource.com/issues/7423534-coinbase-bug
+          # button = coinbase.create_button "Your Order ##{ @address.id }", ENV['PRICE'].to_f, "1 pass for your #{ @address.name } address", "A#{ @address.id }"
+          # @address.update button_code: button.button.code
       
           @address.fetch_balance_and_last_transaction!
         rescue OpenSSL::SSL::SSLError
